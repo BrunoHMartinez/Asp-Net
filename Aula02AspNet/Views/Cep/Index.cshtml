@@ -1,0 +1,54 @@
+﻿@model ViaCep
+@{
+    List<ViaCep> ceps = ViewBag.ceps;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Consultar e cadastrar CEP</title>
+</head>
+<body class="container" style="padding-top:30px">
+    <fieldset>
+        <legend class="font-weight-bold">Consultar e Cadastrar CEP</legend>
+
+        <form asp-action="Pesquisar" asp-controller="Cep">
+            <div class="input-group mb-3">
+                <input type="text" id="txtCep" class="form-control col-4" placeholder="Digite o CEP" name="txtCep" />
+                    <input type="submit" value="Consultar" class="btn btn-info" />
+                </div>
+                <div style="margin-top:10px">
+                    <table class="table table-light table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center">Cep  </th>
+                                <th class="text-center">Logradouro </th>
+                                <th class="text-center">Bairro </th>
+                                <th class="text-center">Localidade</th>
+                                <th class="text-center">Uf</th>
+                                <th class="text-center">Complemento </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ViaCep item in ceps)
+                            {
+                                <tr>
+                                    <td class="text-center">@item.Cep</td>
+                                    <td class="text-center">@item.Logradouro</td>
+                                    <td class="text-center">@item.Bairro</td>
+                                    <td class="text-center">@item.Localidade</td>
+                                    <td class="text-center">@item.Uf</td>
+                                    <td class="text-center">@item.Complemento</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+        </form>
+    </fieldset>
+</body>
+</html>
