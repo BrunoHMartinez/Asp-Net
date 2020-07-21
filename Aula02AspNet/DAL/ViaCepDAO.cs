@@ -19,7 +19,23 @@ namespace Aula02AspNet.DAL
             _context.ceps.Add(cep);
             _context.SaveChanges();
         }
-        public List<ViaCep> Listar()
+
+        public void Put(int id, [FromBody] ViaCep viaCep)
+        {
+            var cep = _context.ceps.FirstOrDefault(x => x.CepId == id);
+
+             if (cep != null)
+            {
+                 cep.Logradouro = viaCep.Logradouro;
+                 cep.Complemento = viaCep.Complemento;
+                 cep.Bairro = viaCep.Bairro;
+                 cep.Localidade = viaCep.Localidade;
+                 cep.Uf = viaCep.Uf;
+                _context.ceps.Update(cep);
+                _context.SaveChanges();
+            }
+        }
+public List<ViaCep> Listar()
         {
             return _context.ceps.ToList();
         }

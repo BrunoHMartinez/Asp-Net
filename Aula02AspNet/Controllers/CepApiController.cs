@@ -43,5 +43,13 @@ namespace Aula02AspNet.Controllers
         {
             return Ok(_viaCepDAO.GetResult(id));
         }
+        // Put : /api/Endereco/AlterarEndereco
+        [HttpPut]
+        [Route("AlterarEndereco/{id}", Name = "Cepid")]
+        public IActionResult Alterar (int id, ViaCep cep)
+        {
+            _viaCepDAO.Put(id, cep);
+            return Created("", cep);
+        }
     }
 }
