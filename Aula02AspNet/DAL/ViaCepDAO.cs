@@ -1,4 +1,5 @@
 ﻿using Aula02AspNet.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,17 @@ namespace Aula02AspNet.DAL
         public List<ViaCep> Listar()
         {
             return _context.ceps.ToList();
+        }
+        public ViaCep BuscarPorId(int CepId)
+        {
+            return _context.ceps.Find(CepId);
+        }
+
+        public IActionResult GetResult(int id)
+        {
+            var item = _context.ceps.Find(id);
+                return new ObjectResult(item);
+ 
         }
     }
 }

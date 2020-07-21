@@ -21,19 +21,27 @@ namespace Aula02AspNet.Controllers
 
         // Get: /api/Endereco/ListarEnderecos
         [HttpGet]
-        [Route ("ListarEnderecos")]
-        public List<ViaCep> Listar()
+        [Route("ListarEnderecos")]
+        public IActionResult Listar()
         {
-            return _viaCepDAO.Listar(); 
+            return Ok(_viaCepDAO.Listar());
         }
 
         // Post: /api/Endereco/CadastrarEndereco
         [HttpPost]
         [Route("CadastrarEndereco")]
-        public void CadastrarEnderecos (ViaCep cep)
+        public IActionResult CadastrarEnderecos(ViaCep cep)
         {
-             _viaCepDAO.Cadastrar(cep);
+            _viaCepDAO.Cadastrar(cep);
+            return Created("", cep);
         }
 
+        // Get :  /api/Endereco/ListarEndereco/{id}
+        [HttpGet]
+        [Route("ListarEndereco/{id}", Name = "id")]
+        public IActionResult GetResult (int id)
+        {
+            return Ok(_viaCepDAO.GetResult(id));
+        }
     }
 }
