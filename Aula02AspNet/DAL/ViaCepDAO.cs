@@ -50,5 +50,15 @@ public List<ViaCep> Listar()
                 return new ObjectResult(item);
  
         }
+
+        public void Deletar (int id)
+        {
+            var cep = _context.ceps.FirstOrDefault(x => x.CepId == id);
+            if (cep != null)
+            {
+                _context.ceps.Remove(cep);
+                _context.SaveChanges();
+            }
+        }
     }
 }

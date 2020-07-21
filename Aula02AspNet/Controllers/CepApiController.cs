@@ -51,5 +51,15 @@ namespace Aula02AspNet.Controllers
             _viaCepDAO.Put(id, cep);
             return Created("", cep);
         }
+
+        // Delete : /api/Endereco/DeletarEndereco
+        [HttpDelete]
+        [Route("DeletarEndereco/{id}", Name = "CepRId")]
+        public IActionResult Deletar(int id)
+        {
+            _viaCepDAO.Deletar(id);
+            return Ok();
+           
+        }
     }
 }
